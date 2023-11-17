@@ -4,16 +4,8 @@
   </view>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import './index.css'
-
-export default {
-  setup () {
-    const msg = ref('Hello world!!!')
-    return {
-      msg
-    }
-  }
-}
+let msg = "振炫：这美女我要了"
 </script>
