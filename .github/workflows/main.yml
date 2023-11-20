@@ -25,19 +25,11 @@ jobs:
       uses: actions/checkout@v3  # 检出仓库
 
     - run: cd ./toDoList
-      
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-
 
     - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
   
     - name: Install Dependencies
       run: |
