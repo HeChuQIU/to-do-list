@@ -1,10 +1,25 @@
-import { defineConfig, type UserConfigExport } from '@tarojs/cli'
+import {defineConfig, type UserConfigExport} from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
 
+/**
+ * @description 根据vant组件名，生成相应的映射地址。来源: https://juejin.cn/post/6951948332201672718
+ * @param {*} componentName 组件名
+ * @return {*} 组件映射地址
+ */
+const createVantPatterns = (componentName) => {
+  const fileTypes = ['wxml', 'wxs', 'wxss'];
+  return fileTypes.map((item) => {
+    return {
+      from: `src/components/vant-weapp/dist/${componentName}/index.${item}`,
+      to: `dist/components/vant-weapp/dist/${componentName}/index.${item}`,
+    };
+  });
+};
+
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig(async (merge, { command, mode }) => {
+export default defineConfig(async (merge, {command, mode}) => {
   const baseConfig: UserConfigExport = {
     projectName: 'toDoList',
     date: '2023-11-16',
@@ -17,14 +32,28 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [],
-    defineConstants: {
-    },
+    plugins: [
+      [
+        "@tarojs/plugin-html",
+        {
+          pxtransformBlackList: [/van-/],
+        },
+      ],
+    ],
+    defineConstants: {},
     copy: {
       patterns: [
+        {
+          from: "src/components/vant-weapp/dist/wxs", // 公共模块
+          to: "dist/components/vant-weapp/dist/wxs",
+        },
+        {
+          from: "src/components/vant-weapp/dist/common/", // 公共模块
+          to: "dist/components/vant-weapp/dist/common/",
+        },
+        ...createVantPatterns("button"),
       ],
-      options: {
-      }
+      options: {},
     },
     framework: 'vue3',
     compiler: 'webpack5',
@@ -36,7 +65,7 @@ export default defineConfig(async (merge, { command, mode }) => {
         pxtransform: {
           enable: true,
           config: {
-
+            selectorBlackList: [/van-/],
           }
         },
         url: {
