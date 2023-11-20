@@ -1,4 +1,4 @@
-class ToDoThing {
+export class ToDoThing {
   constructor(
     public title?: string,
     public description?: string,

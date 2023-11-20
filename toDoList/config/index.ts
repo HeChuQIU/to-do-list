@@ -9,13 +9,10 @@ import prodConfig from './prod'
  * @return {*} 组件映射地址
  */
 const createVantPatterns = (componentName) => {
-  const fileTypes = ['wxml', 'wxs', 'wxss'];
-  return fileTypes.map((item) => {
     return {
-      from: `src/components/vant-weapp/dist/${componentName}/index.${item}`,
-      to: `dist/components/vant-weapp/dist/${componentName}/index.${item}`,
+      from: `src/components/vant-weapp/dist/${componentName}/`,
+      to: `dist/components/vant-weapp/dist/${componentName}/`,
     };
-  });
 };
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
@@ -51,14 +48,21 @@ export default defineConfig(async (merge, {command, mode}) => {
           from: "src/components/vant-weapp/dist/common/", // 公共模块
           to: "dist/components/vant-weapp/dist/common/",
         },
-        ...createVantPatterns("button"),
+        createVantPatterns("button"),
+        createVantPatterns("tabbar"),
+        createVantPatterns("tabbar-item"),
+        createVantPatterns("icon"),
+        createVantPatterns("swipe-cell"),
+        createVantPatterns("cell-group"),
+        createVantPatterns("cell"),
+        createVantPatterns("tag"),
       ],
       options: {},
     },
     framework: 'vue3',
     compiler: 'webpack5',
     cache: {
-      enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
+      enable: true // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
     mini: {
       postcss: {

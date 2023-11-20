@@ -1,14 +1,13 @@
 import {createRouter, createWebHistory} from 'vue-router'
-
-const Home = {template: '<div>Home</div>'}
-const About = {template: '<div>About</div>'}
+import Setting from "@/components/Setting.vue";
+import TimeLine from "@/components/TimeLine.vue";
 
 export const routes = [
-  {path: '/', component: Home},
-  {path: '/about', component: About},
+  {path: '/setting', component: Setting},
+  {path: '/timeLine', component: TimeLine},
 ];
 
 export const router = createRouter({
   history: createWebHistory(),
-  routes, // `routes: routes` 的缩写
-});
+  routes,
+})

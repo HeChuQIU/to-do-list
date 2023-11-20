@@ -1,20 +1,31 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import {ref} from 'vue'
 import './index.css'
+import {router} from "@/router";
+import TimeLine from "@/components/TimeLine.vue";
+import {ToDoThing} from "@/data/ToDoThing";
 
-const msg = ref('Hello world!')
+const active = ref(0);
+const ToDoThingList: ToDoThing[] = [
+  new ToDoThing().withTitle("Thing0"),
+  new ToDoThing().withTitle("Thing1"),
+  new ToDoThing().withTitle("Thing2"),
+];
+
+const change = (event) => {
+  active.value = event.detail;
+  router.push("/timeLine");
+}
 </script>
 
 <template>
-  <view class="index">
-    <text>{{ msg }}</text>
-  </view>
-  <view>
-    <van-button type="primary">Button</van-button>
-  </view>
-  <view class="tab-box">
-    <router-link class="tab-item" to="/timeLine" replace>TimeLine</router-link>
-  </view>
+  <TimeLine :things="ToDoThingList"></TimeLine>
   <router-view></router-view>
+  <van-tabbar :active="active" @change="change">
+    <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+    <van-tabbar-item icon="search">标签</van-tabbar-item>
+    <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
+    <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+  </van-tabbar>
 </template>
 
