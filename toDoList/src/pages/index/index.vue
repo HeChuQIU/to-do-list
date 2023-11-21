@@ -1,31 +1,41 @@
-<script setup lang="ts">
-import {ref} from 'vue'
-import './index.css'
-import {router} from "@/router";
-import TimeLine from "@/components/TimeLine.vue";
-import {ToDoThing} from "@/data/ToDoThing";
-
-const active = ref(0);
-const ToDoThingList: ToDoThing[] = [
-  new ToDoThing().withTitle("Thing0"),
-  new ToDoThing().withTitle("Thing1"),
-  new ToDoThing().withTitle("Thing2"),
-];
-
-const change = (event) => {
-  active.value = event.detail;
-  router.push("/timeLine");
-}
-</script>
-
 <template>
-  <TimeLine :things="ToDoThingList"></TimeLine>
-  <router-view></router-view>
-  <van-tabbar :active="active" @change="change">
-    <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-    <van-tabbar-item icon="search">标签</van-tabbar-item>
-    <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-    <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-  </van-tabbar>
+  <view class="content">
+    <image class="logo" src="/static/logo.png" />
+    <view class="text-area">
+      <text class="title">{{ title }}</text>
+    </view>
+  </view>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue'
+const title = ref('Hello')
+</script>
+
+<style>
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 200rpx;
+  width: 200rpx;
+  margin-top: 200rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50rpx;
+}
+
+.text-area {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  font-size: 36rpx;
+  color: #8f8f94;
+}
+</style>
