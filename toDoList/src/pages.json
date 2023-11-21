@@ -1,15 +1,10 @@
 {
   "pages": [
-    {
-      "path": "pages/index/listForm",
-      "style": {
-        "navigationBarTitleText": "计划表"
-      }
-    },
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "uni-app"
       }
     }
   ],
@@ -18,5 +13,11 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "tui-(.*)": "thorui-uni/lib/thorui/tui-$1/tui-$1.vue"
+    }
   }
 }
