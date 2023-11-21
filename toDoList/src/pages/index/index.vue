@@ -22,9 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Helloaa')
-import {ref} from 'vue'
+import { ref } from 'vue';
 import {ToDoThing} from "@/data/ToDoThing";
 import ToDoThingList from "@/components/ToDoThingList.vue";
 
