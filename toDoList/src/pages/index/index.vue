@@ -17,11 +17,23 @@
 
     </view>
   </view>
+  toDoThings length : {{ toDoThings.length }}
+  <ToDoThingList :things="toDoThings"></ToDoThingList>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Helloaa')
+import { ref } from 'vue';
+import {ToDoThing} from "@/data/ToDoThing";
+import ToDoThingList from "@/components/ToDoThingList.vue";
+
+const title = ref('Hello')
+const toDoThings = ref(
+    new Array(10).fill(true)
+        .map((value, index, array) => new ToDoThing()
+            .WithTitle('Hello There')
+            .WithStartTime(new Date())
+            .WithDescription(index.toString())
+        ));
 </script>
 
 <style>
