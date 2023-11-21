@@ -30,7 +30,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
   
     - name: Install Dependencies
-      run: npm --prefix=./ToDoList install
+      run: npm --prefix=./oDoList install
 
     - name: Build Vue Project
-      run: npm --prefix=./ToDoList run build:mp-weixin
+      run: npm --prefix=./toDoList run build:mp-weixin
