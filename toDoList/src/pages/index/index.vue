@@ -1,46 +1,94 @@
 <template>
-  <view class="bottomNav">
-    <view class="tabbar">
-      <view class="tabbarItem" id="homePage">
-        <view class="picHome">
-        </view>今日清单
-      </view>
-      <view class="tabbarItem" id="calendarPage">
-        <view class="picCalendar"></view>
-        <view>日历计划</view>
-
-      </view>
-
-      <view class="tabbarItem" id="pesonnalPage">
-        <view class="picUs"></view>关于我们
-      </view>
-
+  <view class="allIn">
+    <view class="listCard">
+      <ToDoThingList :things="toDoThings"></ToDoThingList>
     </view>
+    <tui-bottom-popup :zIndex="1002" :maskZIndex="1001" :show="popupShow" @close="hiddenPopup">
+      <view class="listForm">
+        <view>
+          <tui-section title="标题" is-line background="#fff"></tui-section>
+          <MyInput :value="listInfo.name"></MyInput>
+        </view>
+
+        <view>
+          <tui-section title="内容" is-line background="#fff"></tui-section>
+          <MyTextarea :value="listInfo.content"></MyTextarea>
+        </view>
+      </view>
+    </tui-bottom-popup>
+    <view class="addList">
+      <tui-fab @click="showPopup" bgColor="#5677fc"></tui-fab>
+    </view>
+    <view class="bottomNav">
+      <view class="tabbar">
+        <view class="tabbarItem" id="homePage">
+          <view class="picHome">
+          </view>今日清单
+        </view>
+        <view class="tabbarItem" id="calendarPage">
+          <view class="picCalendar"></view>
+          <view>日历计划</view>
+
+        </view>
+
+        <view class="tabbarItem" id="pesonnalPage">
+          <view class="picUs"></view>关于我们
+        </view>
+
+      </view>
+    </view>
+
   </view>
-  toDoThings length : {{ toDoThings.length }}
-  <ToDoThingList :things="toDoThings"></ToDoThingList>
+
+  <!-- toDoThings length : {{ toDoThings.length }} -->
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import {ToDoThing} from "@/data/ToDoThing";
+import { ref, reactive } from 'vue';
+import { ToDoThing } from "@/data/ToDoThing";
 import ToDoThingList from "@/components/ToDoThingList.vue";
+import MyInput from "../../components/myInput/MyInput.vue";
+import MyTextarea from "../../components/myTextarea/MyTextarea.vue"
+const listInfo = reactive({
+  name: "",
+  content: ""
+});
 
+const popupShow = ref(false);
+const showPopup = () => popupShow.value = true;
+const hiddenPopup = () => popupShow.value = false;
 const title = ref('Hello')
 const toDoThings = ref(
-    new Array(10).fill(true)
-        .map((value, index, array) => new ToDoThing()
-            .WithTitle('Hello There')
-            .WithStartTime(new Date())
-            .WithDescription(index.toString())
-        ));
+  new Array(10).fill(true)
+    .map((value, index, array) => new ToDoThing()
+      .WithTitle('Hello There')
+      .WithStartTime(new Date())
+      .WithDescription(index.toString())
+    ));
 </script>
 
 <style>
+.listCard {
+  height: 90vh;
+  overflow: scroll;
+}
+
+.listForm {
+  height: 45vh;
+}
+
+.addList {
+  transform: translateY(40px);
+  position: relative;
+  z-index: 10;
+}
+
 .bottomNav {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 10vh;
+  /* margin-top: 80px; */
 }
 
 .tabbar {
@@ -50,7 +98,7 @@ const toDoThings = ref(
   /* margin-top: 78vh; */
   background-color: rgba(0, 0, 0, 0.021);
   border-top: solid 1px rgba(128, 128, 128, 0.747);
-  height: 50px;
+  height: 10vh;
 }
 
 .tabbarItem {
