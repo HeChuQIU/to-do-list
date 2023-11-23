@@ -1,19 +1,6 @@
 {
   "pages": [
     {
-      "path": "components/myCard/MyCard",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
-    },
-    {
-      "path": "pages/index/listForm",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
-    },
-
-    {
       "path": "pages/index/index",
       "style": {
         "navigationBarTitleText": "uni-app"
