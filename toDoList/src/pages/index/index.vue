@@ -1,24 +1,39 @@
 <template>
   <view class="allIn">
     <view class="listCard">
+
       <ToDoThingList :things="toDoThings"></ToDoThingList>
     </view>
+
+    <!-- list内容 -->
     <tui-bottom-popup :zIndex="1002" :maskZIndex="1001" :show="popupShow" @close="hiddenPopup">
       <view class="listForm">
         <view>
           <tui-section title="标题" is-line background="#fff"></tui-section>
-          <MyInput :value="listInfo.name"></MyInput>
+          <MyInput :value="listInfo.name" @onChange="setname"></MyInput>
         </view>
-
         <view>
           <tui-section title="内容" is-line background="#fff"></tui-section>
-          <MyTextarea :value="listInfo.content"></MyTextarea>
+          <MyTextarea :value="listInfo.content" @onChange="setcontent"></MyTextarea>
         </view>
+        <view>
+          <tui-section title="重要程度" is-line background="#fff"></tui-section>
+          <view style="padding-left: 10px;">
+            <tui-rate :current="current" :size="30" :quantity="5" @change="change"></tui-rate>
+          </view>
+        </view>
+        <tui-divider width="60%" gradual></tui-divider>
+        <view class="ensureAdding">
+          <tui-button width="90%" shape="circle" @click="addList">添加计划</tui-button>
+        </view>
+
       </view>
     </tui-bottom-popup>
     <view class="addList">
       <tui-fab @click="showPopup" bgColor="#5677fc"></tui-fab>
     </view>
+
+    <!-- 底部导航栏 -->
     <view class="bottomNav">
       <view class="tabbar">
         <view class="tabbarItem" id="homePage">
@@ -28,9 +43,7 @@
         <view class="tabbarItem" id="calendarPage">
           <view class="picCalendar"></view>
           <view>日历计划</view>
-
         </view>
-
         <view class="tabbarItem" id="pesonnalPage">
           <view class="picUs"></view>关于我们
         </view>
@@ -54,6 +67,26 @@ const listInfo = reactive({
   content: ""
 });
 
+const setname = (value) => {
+  listInfo.name = value;
+};
+
+const setcontent = (value) => {
+  listInfo.content = value
+}
+
+const addList = () => {
+  console.log(listInfo.content);
+}
+
+
+
+
+const current = ref(0);
+
+const change = (e) => {
+  current.value = e.index;
+};
 const popupShow = ref(false);
 const showPopup = () => popupShow.value = true;
 const hiddenPopup = () => popupShow.value = false;
@@ -74,13 +107,21 @@ const toDoThings = ref(
 }
 
 .listForm {
-  height: 45vh;
+  height: 60vh;
+  overflow: scroll;
 }
 
 .addList {
   transform: translateY(40px);
   position: relative;
   z-index: 10;
+}
+
+.ensureAdding {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .bottomNav {

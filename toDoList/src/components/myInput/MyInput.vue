@@ -8,10 +8,10 @@
   
 <script setup>
 const props = defineProps(["value"]);
-const emit = defineEmits(["change"]);
+const emit = defineEmits(["onChange"]);
 
 const handler = (event) => {
-    emit("change", event.target.value);
+    emit("onChange", event.target.value);
 };
 </script>
 
