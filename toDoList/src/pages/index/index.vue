@@ -40,7 +40,7 @@
           <view class="picHome">
           </view>今日清单
         </view>
-        <view class="tabbarItem" id="calendarPage">
+        <view class="tabbarItem" id="calendarPage" @click="gotoCalendar">
           <view class="picCalendar"></view>
           <view>日历计划</view>
         </view>
@@ -62,6 +62,7 @@ import { ToDoThing } from "@/data/ToDoThing";
 import ToDoThingList from "@/components/ToDoThingList.vue";
 import MyInput from "../../components/myInput/MyInput.vue";
 import MyTextarea from "../../components/myTextarea/MyTextarea.vue"
+import { withCtx } from 'vue';
 const listInfo = reactive({
   name: "",
   content: ""
@@ -79,7 +80,12 @@ const addList = () => {
   console.log(listInfo.content);
 }
 
-
+const gotoCalendar = () => {
+  console.log("日历");
+  uni.navigateTo({
+    url: 'calendar',
+  })
+};
 
 
 const current = ref(0);
