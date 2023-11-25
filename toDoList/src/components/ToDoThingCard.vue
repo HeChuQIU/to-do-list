@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {ToDoThing} from "@/data/ToDoThing";
-import {ref} from "vue";
+import type { ToDoThing } from "@/data/ToDoThing";
+import { ref } from "vue";
 
 const props = defineProps<{
   toDoThing: ToDoThing
@@ -18,7 +18,7 @@ const card = ref({
     circle: true
   },
   title: {
-    text: props.toDoThing.Title,
+    text: "dsd" + props.toDoThing.Title,
     color: '#000000',
     size: 34
   },
@@ -36,20 +36,20 @@ const actions = ref([{
   width: 70, //单位px
   background: '#FD3B31'
 },
-  {
-    name: '修改',
-    color: '#fff',
-    fontsize: 30,
-    width: 70,
-    background: '#5677fc'
-  },
-  {
-    name: '收藏',
-    width: 70,
-    fontsize: 30,
-    color: '#fff',
-    background: '#C8C7CD'
-  }]);
+{
+  name: '修改',
+  color: '#fff',
+  fontsize: 30,
+  width: 70,
+  background: '#5677fc'
+},
+{
+  name: '收藏',
+  width: 70,
+  fontsize: 30,
+  color: '#fff',
+  background: '#C8C7CD'
+}]);
 
 const handlerButton = (e) => {
   let index = e.index;
@@ -57,10 +57,14 @@ const handlerButton = (e) => {
   let menuTxt = ['删除', '修改', '收藏'][index];
   console.log('您点击了【' + menuTxt + '】按钮')
 
-  if(index === 0) {
+  if (index === 0) {
     emit('remove', props.toDoThing);
   }
 }
+
+
+
+
 </script>
 
 <template>
@@ -82,6 +86,4 @@ const handlerButton = (e) => {
   </tui-swipe-action>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
