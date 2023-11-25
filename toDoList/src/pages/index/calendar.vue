@@ -4,11 +4,12 @@
     <view class="listing">
 
     </view>
+    <BottomNav></BottomNav>
 </template>
 
 <script setup>
 import { ref } from "vue";
-
+import BottomNav from "@/components/BottomNav.vue";
 const status = ref(
     [{
         text: "aa", //描述：2字以内
