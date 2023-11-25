@@ -8,10 +8,10 @@
 </template>
 <script setup>
 const props = defineProps(["value"]);
-const emit = defineEmits(["onChange"]);
+const emit = defineEmits(["update:value"]);
 
 const handler = (event) => {
-    emit("onChange", event.target.value);
+    emit("update:value", event.target.value);
 };
 </script>
 
