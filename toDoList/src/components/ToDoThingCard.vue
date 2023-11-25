@@ -18,7 +18,7 @@ const card = ref({
     circle: true
   },
   title: {
-    text: "dsd" + props.toDoThing.Title,
+    text: props.toDoThing.Title,
     color: '#000000',
     size: 34
   },

@@ -17,7 +17,7 @@ const remove = (thing: ToDoThing) => {
 </script>
 
 <template>
-  <tui-list-view v-for="thing in things" :key="thing" >
+  <tui-list-view v-for="thing in things" :key="thing.GetHash()">
     <tui-list-cell :hover="false" :arrow="false">
       <ToDoThingCard :to-do-thing="thing" @remove="remove"/>
     </tui-list-cell>
