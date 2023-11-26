@@ -23,8 +23,6 @@
 import { ref, reactive } from 'vue';
 import { ToDoThing } from "@/data/ToDoThing";
 import ToDoThingList from "@/components/ToDoThingList.vue";
-import MyInput from "../../components/myInput/MyInput.vue";
-import MyTextarea from "../../components/myTextarea/MyTextarea.vue"
 import AddToDoThing from "@/components/AddToDoThing.vue";
 import BottomNav from "@/components/BottomNav.vue"
 
