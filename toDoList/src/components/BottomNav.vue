@@ -1,4 +1,6 @@
-<!-- <template>
+<!-- @format -->
+
+<template>
     <view class="bottomNav">
         <view class="tabbar" :current="current">
             <view class="tabbarItem" id="homePage" @click="gotoHomePage">
@@ -19,27 +21,28 @@
                 </view>
                 关于我们
             </view>
-
         </view>
     </view>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue"
-const home = ref("../static/changeHome.png")
-const calendar = ref("../static/calendar.png")
-const us = ref("../static/us.png")
+import { reactive, ref, onMounted } from "vue";
+const home = ref("../static/changeHome.png");
+const calendar = ref("../static/calendar.png");
+const us = ref("../static/us.png");
+
 const gotoHomePage = () => {
     uni.navigateTo({
-        url: 'index'
-    })
-
-}
+        url: "index",
+    });
+};
 
 const gotoCalendar = () => {
-    uni.navigateTo({
-        url: 'calendar',
-    })
+    calendar.value = "../static/changeCalendar.png";
+    console.log(uni.value);
+    uni.redirectTo({
+        url: "calendar",
+    });
 };
 </script>
 
@@ -49,7 +52,6 @@ const gotoCalendar = () => {
     bottom: 0;
     width: 100%;
     height: 10vh;
-
 }
 
 .tabbar {
@@ -81,7 +83,6 @@ image {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-
 }
 
 .picCalendar {
@@ -101,11 +102,10 @@ image {
     background-size: contain;
     background-position: center;
     text-align: center;
-
 }
-</style> -->
-<template>
-    <tui-tabbar :current="current" backdropFilter backgroundColor="#f8f8f8" :tabBar="tabBar" color="#777"
+</style>
+<!-- <template>
+    <tui-tabbar :current="current" :type="1" backdropFilter backgroundColor="#f8f8f8" :tabBar="tabBar" color="#777"
         selectedColor="#AC9157" @click="tabbarSwitch"></tui-tabbar>
 </template>
 <script setup>
@@ -134,11 +134,14 @@ const tabbarSwitch = (e) => {
     if (e.index === 0) {
         uni.navigateTo({
             url: 'index'
-        })
+        }).then{
+
+        }
     } else {
         uni.navigateTo({
             url: 'calendar'
         })
     }
-};
-</script>
+}; -->
+
+<!-- </script> -->
