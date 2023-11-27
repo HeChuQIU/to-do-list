@@ -1,8 +1,9 @@
 <template>
     日历
     <tui-calendar ref="calendar" @change="change" type="1" :status="status" color="#5677fc"></tui-calendar>
+  <!--                                            ^^^^^^^^TODO: 我说了这里要用`:type`而不是`type`-->
     <view class="listing">
-        <ToDoThingList :things="toDoThings"></ToDoThingList>
+<!--        <ToDoThingList :things="toDoThings"></ToDoThingList>-->    <!--TODO: ???-->
     </view>
 </template>
 

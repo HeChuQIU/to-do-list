@@ -5,8 +5,11 @@ const props = defineProps<{
 }>();
 </script>
 
-<template v-for="path in paths">
-  <template v-if="currentPath==path" #[path]/>
+<template>
+  <view v-for="path in [paths.find(v => currentPath===v)]" :key="path">
+    {{ currentPath }}==={{ path }}
+    <slot :name="path"/>
+  </view>
 </template>
 
 <style scoped>
