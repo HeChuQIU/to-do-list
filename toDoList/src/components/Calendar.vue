@@ -2,14 +2,12 @@
     日历
     <tui-calendar ref="calendar" @change="change" type="1" :status="status" color="#5677fc"></tui-calendar>
     <view class="listing">
-
+        <ToDoThingList :things="toDoThings"></ToDoThingList>
     </view>
-    <BottomNav></BottomNav>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import BottomNav from "@/components/BottomNav.vue";
 const status = ref(
     [{
         text: "aa", //描述：2字以内

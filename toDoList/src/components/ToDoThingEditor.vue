@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type {ToDoThing} from "@/data/ToDoThing";
+import type { ToDoThing } from "@/data/ToDoThing";
 import MyTextarea from "@/components/myTextarea/MyTextarea.vue";
 import MyInput from "@/components/myInput/MyInput.vue";
 
 const props = defineProps<{
-  thing: ToDoThing
+  thing: ToDoThing;
 }>();
-
 </script>
 
 <template>
@@ -20,11 +19,11 @@ const props = defineProps<{
   </view>
   <view>
     <tui-section title="重要程度" is-line background="#fff"></tui-section>
-    <view style="padding-left: 10px;">
-      <tui-rate :current="thing.Importance" @change="e=>thing.Importance=e.index" :size="30" :quantity="5"></tui-rate>
+    <view style="padding-left: 10px">
+      <tui-rate :current="thing.Importance" @change="(e) => (thing.Importance = e.index)" :size="30"
+        :quantity="5"></tui-rate>
     </view>
   </view>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

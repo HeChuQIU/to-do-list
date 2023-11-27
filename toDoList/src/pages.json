@@ -5,12 +5,6 @@
       "style": {
         "navigationBarTitleText": "首页"
       }
-    },
-    {
-      "path": "pages/index/calendar",
-      "style": {
-        "navigationBarTitleText": "日历"
-      }
     }
   ],
   "globalStyle": {
