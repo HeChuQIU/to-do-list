@@ -53,10 +53,6 @@ const actions = ref([{
 
 const handlerButton = (e) => {
   let index = e.index;
-  let item = e.item;
-  let menuTxt = ['删除', '修改', '收藏'][index];
-  console.log('您点击了【' + menuTxt + '】按钮')
-
   if (index === 0) {
     emit('remove', props.toDoThing);
   }
@@ -78,7 +74,7 @@ const handlerButton = (e) => {
         </template>
         <template v-slot:footer>
           <view class="tui-default">
-            {{ toDoThing.StartTime.toLocaleTimeString() }}
+            {{ toDoThing.StartTime.toLocaleString() }}
           </view>
         </template>
       </tui-card>
