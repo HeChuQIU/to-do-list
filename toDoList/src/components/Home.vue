@@ -43,7 +43,7 @@ const showPopup = () => popupShow.value = true;
 const hiddenPopup = () => popupShow.value = false;
 const title = ref('Hello')
 const toDoThings = ref(
-  new Array(30).fill(true)
+  new Array(3).fill(true)
     .map((value, index, array) => new ToDoThing()
       .WithTitle('Hello There')
       .WithStartTime(new Date((new Date()).setDate(new Date().getDate() - Math.floor(Math.random() * 60))))
