@@ -66,7 +66,6 @@ const gotoCalendar = () => {
 
 .tabbarItem {
     text-align: center;
-    font-family: "楷体";
     font-size: small;
     text-align: center;
 }
@@ -104,44 +103,4 @@ image {
     text-align: center;
 }
 </style>
-<!-- <template>
-    <tui-tabbar :current="current" :type="1" backdropFilter backgroundColor="#f8f8f8" :tabBar="tabBar" color="#777"
-        selectedColor="#AC9157" @click="tabbarSwitch"></tui-tabbar>
-</template>
-<script setup>
-import { ref } from 'vue';
-const current = ref(0);
-const tabBar = ref([
-    {
-        pagePath: "../pages/index/index.vue",
-        text: '首页',
 
-    },
-    {
-        pagePath: "../pages/index/calendar.vue",
-        text: '日历',
-
-    },
-    {
-        pagePath: "../pages/index/calendar",
-        text: '我们',
-
-    }
-]);
-const tabbarSwitch = (e) => {
-    console.log(e);
-    current.value = e.index
-    if (e.index === 0) {
-        uni.navigateTo({
-            url: 'index'
-        }).then{
-
-        }
-    } else {
-        uni.navigateTo({
-            url: 'calendar'
-        })
-    }
-}; -->
-
-<!-- </script> -->
