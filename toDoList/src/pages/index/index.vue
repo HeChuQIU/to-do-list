@@ -1,12 +1,12 @@
 <template>
-  <Home v-if="currentPath===navData[0].path"/>
-  <Calendar v-if="currentPath===navData[1].path"/>
-  <HeChuBottomNav :data="navData" v-model:current-path="currentPath"/>
+  <Home v-if="currentPath === navData[0].path" />
+  <Calendar v-if="currentPath === navData[1].path" />
+  <HeChuBottomNav :data="navData" v-model:current-path="currentPath" />
 </template>
 
 <script setup lang="ts">
-import type {Ref} from "@vue/runtime-core";
-import {ref} from "vue";
+import type { Ref } from "@vue/runtime-core";
+import { ref } from "vue";
 import HeChuBottomNav from "@/components/HeChuBottomNav.vue";
 import Home from "@/components/Home.vue";
 import Calendar from "@/components/Calendar.vue";

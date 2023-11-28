@@ -13,6 +13,7 @@ const props = defineProps<{
     <tui-section title="标题" is-line background="#fff"></tui-section>
     <MyInput v-model:value="thing.Title"></MyInput>
   </view>
+  <view></view>
   <view>
     <tui-section title="内容" is-line background="#fff"></tui-section>
     <MyTextarea v-model:value="thing.Description"></MyTextarea>

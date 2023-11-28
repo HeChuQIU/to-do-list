@@ -9,20 +9,18 @@
     <tui-bottom-popup :zIndex="1002" :maskZIndex="1001" :show="popupShow" @close="hiddenPopup">
       <AddToDoThing @add="addThing"></AddToDoThing>
     </tui-bottom-popup>
-    <view class="addList">
-      <tui-fab @click="showPopup" bgColor="#5677fc"></tui-fab>
-    </view>
+    <tui-fab @click="showPopup" bottom="180" bgColor="#5677fc"></tui-fab>
 
   </view>
 </template>
 
 <script setup lang="ts">
-import {ref, reactive} from 'vue';
-import {ToDoThing} from "@/data/ToDoThing";
+import { ref, reactive } from 'vue';
+import { ToDoThing } from "@/data/ToDoThing";
 import ToDoThingList from "@/components/ToDoThingList.vue";
 import AddToDoThing from "@/components/AddToDoThing.vue";
 import BottomNav from "@/components/BottomNav.vue"
-import {random} from "nanoid";
+import { random } from "nanoid";
 
 const listInfo = reactive({
   name: "",
@@ -45,12 +43,12 @@ const showPopup = () => popupShow.value = true;
 const hiddenPopup = () => popupShow.value = false;
 const title = ref('Hello')
 const toDoThings = ref(
-    new Array(30).fill(true)
-        .map((value, index, array) => new ToDoThing()
-            .WithTitle('Hello There')
-            .WithStartTime(new Date((new Date()).setDate(new Date().getDate() - Math.floor(Math.random() * 60))))
-            .WithDescription(index.toString())
-        ));
+  new Array(30).fill(true)
+    .map((value, index, array) => new ToDoThing()
+      .WithTitle('Hello There')
+      .WithStartTime(new Date((new Date()).setDate(new Date().getDate() - Math.floor(Math.random() * 60))))
+      .WithDescription(index.toString())
+    ));
 const tabs = ref([{
   name: "日"
 }, {
@@ -66,18 +64,12 @@ const tabChange = (e) => {
 
 <style>
 .listCard {
-  height: 90vh;
+  height: 82vh;
   overflow: scroll;
 }
 
 .listForm {
   height: auto;
-}
-
-.addList {
-  transform: translateY(40px);
-  position: relative;
-  z-index: 10;
 }
 
 .ensureAdding {

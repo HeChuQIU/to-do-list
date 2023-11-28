@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ToDoThingEditor from "@/components/ToDoThingEditor.vue";
-import {ToDoThing} from "@/data/ToDoThing";
-import {ref} from "vue";
-import type {Ref} from "@vue/runtime-core";
+import { ToDoThing } from "@/data/ToDoThing";
+import { ref } from "vue";
+import type { Ref } from "@vue/runtime-core";
 
 const emit = defineEmits<{
   (e: 'add', thing: ToDoThing): void
@@ -20,9 +20,7 @@ const thing: Ref<ToDoThing> = ref(new ToDoThing());
   <view class="listForm">
     <ToDoThingEditor :thing="thing"></ToDoThingEditor>
     <tui-divider width="60%" gradual></tui-divider>
-    <view class="ensureAdding">
-      <tui-button width="90%" shape="circle" @click="add">添加计划</tui-button>
-    </view>
+    <tui-button width="90%" shape="circle" @click="add">添加计划</tui-button>
   </view>
 </template>
 
