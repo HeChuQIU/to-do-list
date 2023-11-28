@@ -1,8 +1,8 @@
 <template>
   <Home v-if="currentPath===paths[0]"/>
   <Calendar v-if="currentPath===paths[1]"/>
-  <HeChuBottomNav :names="names" :paths="paths" v-model:current-path="currentPath" :images-src="imagesSrc"
-                  :clicked-images-src="clickedImagesSrc"/>
+  <HeChuBottomNav :names="names" :paths="paths" v-model:current-path="currentPath" :image-names="imageNames"
+                  :selected-color="selectColor" :unselected-color="unselectColor"/>
 </template>
 
 <script setup lang="ts">
@@ -27,15 +27,13 @@ const paths: Ref<String[]> = ref([
 
 const currentPath: Ref<String> = ref("home");
 
-const imagesSrc: Ref<String[]> = ref([
-  "../static/home.png",
-  "../static/calendar.png",
-  "../static/us.png"
+const imageNames: Ref<String[]> = ref([
+  "home",
+  "calendar",
+  "people"
 ]);
 
-const clickedImagesSrc: Ref<String[]> = ref([
-  "../static/changeHome.png",
-  "../static/changeCalendar.png",
-  "../static/changeUs.png"
-]);
+const selectColor = ref("rgb(54,162,239)");
+const unselectColor = ref("rgb(0,0,0)");
+
 </script>

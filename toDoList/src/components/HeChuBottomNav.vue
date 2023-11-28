@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import ColorString = HBuilderX.ColorString;
+
 const props = defineProps<{
   currentPath: String
   paths: String[]
   names: String[]
-  imagesSrc: String[]
-  clickedImagesSrc: String[]
+  imageNames: String[]
+  unselectedColor: String
+  selectedColor: String
 }>();
 
 const emit = defineEmits<{
@@ -26,7 +29,8 @@ const getIndex = (path: String) => {
     <view class="tabbar">
       <view v-for="path in paths" :key="path" class="tabbarItem" @click="e => onClick(e,path)">
         <view class="pic">
-          <image :src="path===currentPath?clickedImagesSrc[getIndex(path)]:imagesSrc[getIndex(path)]"></image>
+          <tui-icon :name="imageNames[getIndex(path)]"
+                    :color="path===currentPath?selectedColor:unselectedColor"></tui-icon>
         </view>
         {{ names[getIndex(path)] }}
       </view>
