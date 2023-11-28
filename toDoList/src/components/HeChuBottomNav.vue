@@ -3,11 +3,13 @@ import ColorString = HBuilderX.ColorString;
 
 const props = defineProps<{
   currentPath: String
-  paths: String[]
-  names: String[]
-  imageNames: String[]
-  unselectedColor: String
-  selectedColor: String
+  data: {
+    path: String
+    name: String
+    iconName: String
+    unselectedColor: String
+    selectedColor: String
+  }[]
 }>();
 
 const emit = defineEmits<{
@@ -19,7 +21,7 @@ const onClick = (e: MouseEvent, path: String) => {
 };
 
 const getIndex = (path: String) => {
-  return props.paths.findIndex(v => v === path);
+  return props.data.findIndex(v => v.path === path);
 };
 
 </script>
@@ -27,12 +29,12 @@ const getIndex = (path: String) => {
 <template>
   <view class="bottomNav">
     <view class="tabbar">
-      <view v-for="path in paths" :key="path" class="tabbarItem" @click="e => onClick(e,path)">
+      <view v-for="d in data" :key="d.path" class="tabbarItem" @click="e => onClick(e,d.path)">
         <view class="pic">
-          <tui-icon :name="imageNames[getIndex(path)]"
-                    :color="path===currentPath?selectedColor:unselectedColor"></tui-icon>
+          <tui-icon :name="d.iconName"
+                    :color="d.path===currentPath?d.selectedColor:d.unselectedColor"></tui-icon>
         </view>
-        {{ names[getIndex(path)] }}
+        {{ d.name }}
       </view>
     </view>
   </view>
