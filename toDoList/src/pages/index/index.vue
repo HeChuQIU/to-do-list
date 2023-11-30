@@ -1,6 +1,7 @@
 <template>
   <Home v-if="currentPath === navData[0].path" />
   <Calendar v-if="currentPath === navData[1].path" />
+  <AboutUs v-if="currentPath === navData[2].path"></AboutUs>
   <HeChuBottomNav :data="navData" v-model:current-path="currentPath" />
 </template>
 
@@ -10,6 +11,7 @@ import { ref } from "vue";
 import HeChuBottomNav from "@/components/HeChuBottomNav.vue";
 import Home from "@/components/Home.vue";
 import Calendar from "@/components/Calendar.vue";
+import AboutUs from "@/components/AboutUs.vue";
 
 const currentPath: Ref<String> = ref("home");
 const navData = ref([
