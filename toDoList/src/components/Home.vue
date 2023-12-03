@@ -14,11 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { ToDoThing } from "@/data/ToDoThing";
 import ToDoThingList from "@/components/ToDoThingList.vue";
 import AddToDoThing from "@/components/AddToDoThing.vue";
-import { computed } from '@vue/reactivity';
 
 const addThing = (thing: ToDoThing) => {
   toDoThings.value.push(thing);
