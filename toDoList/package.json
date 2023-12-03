@@ -54,6 +54,7 @@
     "@dcloudio/uni-mp-xhs": "3.0.0-3090820231124001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-3090820231124001",
     "@vue/reactivity": "^3.3.9",
+    "fp-ts": "^2.16.1",
     "nanoid": "^5.0.3",
     "thorui-uni": "^2.9.5",
     "vue": "^3.3.8",
