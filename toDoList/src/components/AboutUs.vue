@@ -13,28 +13,88 @@
           <view style="margin-left: 20px;">昵称</view>
           <view style="margin: auto;">
             <input type="nickname" class="weui-input" maxlength="10" :value="nickName" @blur="bindblur"
-              placeholder="请输入昵称" @input="bindinput" />
+                   placeholder="请输入昵称" @input="bindinput"/>
           </view>
         </view>
         <tui-divider></tui-divider>
         <view style="display: flex;">
           <view style="margin-left: 20px;">座右铭</view>
           <view style="margin: auto;">
-            <input type="text" class="weui-input" maxlength="15" placeholder="写下一句鼓励自己的话吧" />
+            <input type="text" class="weui-input" maxlength="15" placeholder="写下一句鼓励自己的话吧"/>
           </view>
         </view>
       </view>
+      <tui-button type="primary" @click="uploadThings">上传</tui-button>
+      <tui-button type="primary" @click="downloadThings">下载</tui-button>
     </view>
   </view>
 </template>
 
-<script setup>
-import { onMounted, ref } from "vue"
+<script setup lang="ts">
+import {onMounted, ref} from "vue"
+import {ToDoThing} from "@/data/ToDoThing";
+
+const props = defineProps<{
+  things: ToDoThing[]
+}>();
+
+const emit = defineEmits<{
+  // (e: 'update:things', things: ToDoThing[]): void
+}>();
+
+const uploadThings = () => {
+  wx.cloud
+      .callFunction({
+        // 云函数名称
+        name: 'upload-things',
+        // 传给云函数的参数
+        data: {
+          things: JSON.stringify(props.things),
+        },
+      })
+      .then(res => {
+        console.log(res.result)
+      })
+      .catch(console.error)
+};
+
+const downloadThings = () => {
+  wx.cloud
+      .callFunction({
+        // 云函数名称
+        name: 'download-things',
+        // 传给云函数的参数
+        data: {},
+      })
+      .then(res => {
+        console.log(res.result)
+        const things = JSON.parse(res.result.data.things);
+        for (let i = 0; i < things.length; i++) {
+          const thing = things[i];
+          things[i] = new ToDoThing()
+              .WithTitle(thing.Title)
+              .WithDescription(thing.Description)
+              .WithStartTime(new Date(thing.StartTime))
+              .WithEndTime(new Date(thing.EndTime))
+              .WithId(thing.Id)
+              .WithIsDone(thing.IsDone)
+              .WithImportance(thing.Importance);
+          console.log(thing);
+        }
+        console.log(things)
+        if (things && things.length > 0)
+          props.things.length = 0;
+        props.things.push(...(things));
+      })
+      .catch(console.error)
+};
+
 onMounted(() => {
   wx.checkSession({
     success() {
       console.log("gugu还没过期");
     },
+    //TODO: 不能在用户不知情的情况下调用直接登录！
     fail() {
       wx.login({
         success(res) {
@@ -58,7 +118,6 @@ onMounted(() => {
           }
         },
       });
-
     }
   })
 });
@@ -79,7 +138,7 @@ const bindInput = (e) => {
 };
 
 const onChooseAvatar = (e) => {
-  const { avatarUrl: chosenAvatarUrl } = e.detail;
+  const {avatarUrl: chosenAvatarUrl} = e.detail;
   uni.showLoading({
     title: '加载中',
   });
