@@ -1,7 +1,7 @@
 <template>
   <Home :things="toDoThings" v-if="currentPath === navData[0].path" />
   <Calendar :things="toDoThings" v-if="currentPath === navData[1].path" />
-  <AboutUs v-if="currentPath === navData[2].path"></AboutUs>
+  <AboutUs :things="toDoThings" v-if="currentPath === navData[2].path"></AboutUs>
   <HeChuBottomNav :data="navData" v-model:current-path="currentPath" />
 </template>
 
@@ -16,22 +16,24 @@ import {ToDoThing} from "@/data/ToDoThing";
 import {Util} from "@/Util";
 
 const toDoThings = ref(
-    new Array(30).fill(true)
-        .map((value, index) => {
-              const thing = new ToDoThing()
-                  .WithTitle(`Hello There ${index}`)
-                  .WithStartTime(Util.addDaysFromToday(-Math.floor(Math.random() * 60)))
-                  .WithDescription(index.toString());
-              if (Util.inToday(thing.StartTime)) {
-                thing.WithDescription('今天');
-              } else if (Util.inThisWeek(thing.StartTime)) {
-                thing.WithDescription('本周');
-              } else if (Util.inThisMonth(thing.StartTime)) {
-                thing.WithDescription('本月');
-              }
-              return thing;
-            }
-        ));
+    // new Array(30).fill(true)
+    //     .map((value, index) => {
+    //           const thing = new ToDoThing()
+    //               .WithTitle(`Hello There ${index}`)
+    //               .WithStartTime(Util.addDaysFromToday(-Math.floor(Math.random() * 60)))
+    //               .WithDescription(index.toString());
+    //           if (Util.inToday(thing.StartTime)) {
+    //             thing.WithDescription('今天');
+    //           } else if (Util.inThisWeek(thing.StartTime)) {
+    //             thing.WithDescription('本周');
+    //           } else if (Util.inThisMonth(thing.StartTime)) {
+    //             thing.WithDescription('本月');
+    //           }
+    //           return thing;
+    //         }
+    //     )
+    new Array<ToDoThing>()
+);
 
 const currentPath: Ref<String> = ref("home");
 const navData = ref([
