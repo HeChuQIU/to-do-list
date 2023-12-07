@@ -1,28 +1,26 @@
 <template>
-  <view class="containar">
-    <view class="avatarUrl">
-      <button type="balanced" open-type="chooseAvatar" @chooseavatar="onChooseavatar" class="wxLoginInfo">
-        <view class="wximg">
-          <image :src="avatarUrl"></image>
-        </view>
-      </button>
-      <view class="nickname">
-        <text>基础信息</text>
-        <tui-divider></tui-divider>
-        <view style="display: flex;">
-          <view style="margin-left: 20px;">昵称</view>
-          <view style="margin: auto;">
-            <input type="nickname" class="weui-input" maxlength="10" :value="nickName" @blur="bindblur"
-                   placeholder="请输入昵称" @input="bindinput"/>
-          </view>
-        </view>
-        <tui-divider></tui-divider>
-        <view style="display: flex;">
-          <view style="margin-left: 20px;">座右铭</view>
-          <view style="margin: auto;">
-            <input type="text" class="weui-input" maxlength="15" placeholder="写下一句鼓励自己的话吧"/>
-          </view>
-        </view>
+  <view class="avatarUrl">
+    <button type="balanced" open-type="chooseAvatar" @chooseavatar="onChooseavatar" class="wxLoginInfo">
+      <view class="wximg">
+        <image :src="avatarUrl"></image>
+      </view>
+    </button>
+  </view>
+  <view class="nickname">
+    <text>基础信息</text>
+    <tui-divider></tui-divider>
+    <view style="display: flex;">
+      <view style="margin-left: 20px;">昵称</view>
+      <view style="margin: auto;">
+        <input type="nickname" class="weui-input" maxlength="10" :value="nickName" @blur="bindblur" placeholder="请输入昵称"
+          @input="bindinput" />
+      </view>
+    </view>
+    <tui-divider></tui-divider>
+    <view style="display: flex;">
+      <view style="margin-left: 20px;">座右铭</view>
+      <view style="margin: auto;">
+        <input type="text" class="weui-input" maxlength="15" placeholder="写下一句鼓励自己的话吧" />
       </view>
       <tui-button type="primary" @click="uploadThings">上传</tui-button>
       <tui-button type="primary" @click="downloadThings">下载</tui-button>
@@ -31,8 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from "vue"
-import {ToDoThing} from "@/data/ToDoThing";
+import { onMounted, ref } from "vue"
+import { ToDoThing } from "@/data/ToDoThing";
 
 const props = defineProps<{
   things: ToDoThing[]
@@ -44,49 +42,49 @@ const emit = defineEmits<{
 
 const uploadThings = () => {
   wx.cloud
-      .callFunction({
-        // 云函数名称
-        name: 'upload-things',
-        // 传给云函数的参数
-        data: {
-          things: JSON.stringify(props.things),
-        },
-      })
-      .then(res => {
-        console.log(res.result)
-      })
-      .catch(console.error)
+    .callFunction({
+      // 云函数名称
+      name: 'upload-things',
+      // 传给云函数的参数
+      data: {
+        things: JSON.stringify(props.things),
+      },
+    })
+    .then(res => {
+      console.log(res.result)
+    })
+    .catch(console.error)
 };
 
 const downloadThings = () => {
   wx.cloud
-      .callFunction({
-        // 云函数名称
-        name: 'download-things',
-        // 传给云函数的参数
-        data: {},
-      })
-      .then(res => {
-        console.log(res.result)
-        const things = JSON.parse(res.result.data.things);
-        for (let i = 0; i < things.length; i++) {
-          const thing = things[i];
-          things[i] = new ToDoThing()
-              .WithTitle(thing.Title)
-              .WithDescription(thing.Description)
-              .WithStartTime(new Date(thing.StartTime))
-              .WithEndTime(new Date(thing.EndTime))
-              .WithId(thing.Id)
-              .WithIsDone(thing.IsDone)
-              .WithImportance(thing.Importance);
-          console.log(thing);
-        }
-        console.log(things)
-        if (things && things.length > 0)
-          props.things.length = 0;
-        props.things.push(...(things));
-      })
-      .catch(console.error)
+    .callFunction({
+      // 云函数名称
+      name: 'download-things',
+      // 传给云函数的参数
+      data: {},
+    })
+    .then(res => {
+      console.log(res.result)
+      const things = JSON.parse(res.result.data.things);
+      for (let i = 0; i < things.length; i++) {
+        const thing = things[i];
+        things[i] = new ToDoThing()
+          .WithTitle(thing.Title)
+          .WithDescription(thing.Description)
+          .WithStartTime(new Date(thing.StartTime))
+          .WithEndTime(new Date(thing.EndTime))
+          .WithId(thing.Id)
+          .WithIsDone(thing.IsDone)
+          .WithImportance(thing.Importance);
+        console.log(thing);
+      }
+      console.log(things)
+      if (things && things.length > 0)
+        props.things.length = 0;
+      props.things.push(...(things));
+    })
+    .catch(console.error)
 };
 
 onMounted(() => {
@@ -138,7 +136,7 @@ const bindInput = (e) => {
 };
 
 const onChooseAvatar = (e) => {
-  const {avatarUrl: chosenAvatarUrl} = e.detail;
+  const { avatarUrl: chosenAvatarUrl } = e.detail;
   uni.showLoading({
     title: '加载中',
   });
@@ -170,22 +168,18 @@ const onChooseAvatar = (e) => {
 
 <style>
 .avatarUrl {
-  /* background-color: blueviolet; */
   height: 15vh;
   width: 100%;
 }
 
 .wxLoginInfo {
   height: 15vh;
-  width: 100%;
+  width: 15vh;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 5vh;
-  outline: none;
-  border: #fff;
-  /* background-color: #1fac26; */
 }
 
 .wximg {
@@ -197,6 +191,7 @@ const onChooseAvatar = (e) => {
 text {
   font-weight: 700;
   display: flex;
+  margin-left: 20px;
 
 }
 
@@ -208,7 +203,7 @@ text {
   display: flex;
 }
 
-input {
+.weui-input {
   text-align: center;
 }
 </style>

@@ -1,7 +1,11 @@
 <template>
+  <view class="highCalendar">
   <tui-calendar ref="calendar" @change="change" :isChange="true" :type="1" :status="status" activeBgColor="#5677fc"
                 :isActiveCurrent="true" :initStartDate="initStartDate"></tui-calendar>
-  <to-do-thing-list :things="thingsToShow" @removed="removeThing"/>
+
+    <to-do-thing-list :things="thingsToShow" @removed="removeThing"/>
+  </view>
+
 </template>
 
 <script setup lang="ts">
@@ -96,5 +100,8 @@ const change = (e) => {
 </script>
 
 <style>
-
+.highCalendar {
+  height: 88vh;
+  overflow: scroll;
+}
 </style>
