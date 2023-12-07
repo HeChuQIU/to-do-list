@@ -8,7 +8,6 @@
 
 <script setup lang="ts">
 import type { ToDoThing } from "@/data/ToDoThing";
-
 import ToDoThingCard from "@/components/ToDoThingCard.vue";
 
 const props = defineProps<{
