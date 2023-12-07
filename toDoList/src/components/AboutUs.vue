@@ -144,7 +144,7 @@ text {
   display: flex;
 }
 
-input {
+.weui-input {
   text-align: center;
 }
 </style>
