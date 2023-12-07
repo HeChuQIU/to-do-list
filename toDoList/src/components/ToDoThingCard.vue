@@ -9,7 +9,6 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'remove', thing: ToDoThing): void
 }>();
-console.log(props.toDoThing.Importance);
 
 const card = ref({
   img: {
@@ -74,9 +73,6 @@ const handlerButton = (e) => {
     emit('remove', props.toDoThing);
   }
 }
-
-
-
 
 </script>
 
